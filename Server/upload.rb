@@ -18,25 +18,28 @@ class Upload
         cgi = CGI.new("html3")
         params = req.params()
 
-        res = Response.new
 
-        id = req['id']
+        res = Rack::Response.new
 
-        imagedata = req["imagedata"]
+        id = params['id']
 
+        imagedata = params["imagedata"]
+
+        $logger << imagedata.size
+        $logger << id
 
 #        id = cgi.params['id'][0].read
 #        id - req[]
 #        imagedata = cgi.params['imagedata'][0].read
-        hash = Digest::MD5.new(imagedata).to_s
+        hash = Digest::MD5.hexdigest(imagedata)
 
-        dbm = SDBM.open('db/id',0644)
-        dbm[hash] = id
-        dbm.close
+        #dbm = SDBM.open('db/id',0644)
+        #dbm[hash] = id
+        #dbm.close
 
         File.open("data/#{hash}.png","w").print(imagedata)
 
-        res.write("http://gyazo.com/#{hash}.png")
+        res.write("http://gyazo.gijutsuya.jp/data/#{hash}.png")
 #        cgi.out { "http://gyazo.com/#{hash}.png" }
         #
         res.finish
