@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'net/http'
+require "#{File.dirname(__FILE__)}/config.rb"
 
 version = '0.4'
 
@@ -39,9 +40,6 @@ imagedata = File.read(tmpfile)
 File.delete(tmpfile)
 
 boundary = '----BOUNDARYBOUNDARY----'
-
-HOST = 'gyazo.com'
-CGI = '/upload.cgi'
 
 data = <<EOF
 --#{boundary}\r
