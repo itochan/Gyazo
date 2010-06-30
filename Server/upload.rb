@@ -37,7 +37,9 @@ class Upload
         #dbm[hash] = id
         #dbm.close
 
-        File.open("data/#{hash}.png","w").print(imagedata)
+        File.open("data/#{hash}.png", 'w') do |io|
+          io.write imagedata
+        end
 
         res.write("http://gyazo.gijutsuya.jp/data/#{hash}.png")
 #        cgi.out { "http://gyazo.com/#{hash}.png" }
