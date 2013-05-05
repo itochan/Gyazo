@@ -11,6 +11,8 @@ require "rubygems"
 require "rack"
 require "pp"
 
+HOST = "http://g.itochan.jp"
+
 class Upload
 
     def call(env)
@@ -41,9 +43,7 @@ class Upload
           io.write imagedata
         end
 
-        res.write("http://gyazo.gijutsuya.jp/data/#{hash}.png")
-#        cgi.out { "http://gyazo.com/#{hash}.png" }
-        #
+        res.write("#{HOST}/data/#{hash}.png")
         res.finish
     end
 
