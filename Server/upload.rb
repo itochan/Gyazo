@@ -26,6 +26,7 @@ class Upload
         id = params['id']
 
         imagedata = params["imagedata"]
+        filename = params["filename"]
 
         $logger << imagedata.size
         $logger << id
@@ -39,11 +40,13 @@ class Upload
         #dbm[hash] = id
         #dbm.close
 
+        ext = File.extname(filename)
+
         File.open("data/#{hash}.png", 'w') do |io|
           io.write imagedata
         end
 
-        res.write("#{HOST}/data/#{hash}.png")
+        res.write("#{HOST}/data/#{hash}#{ext}")
         res.finish
     end
 

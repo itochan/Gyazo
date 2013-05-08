@@ -1,4 +1,4 @@
 # encoding: utf-8
 
-HOST = "gyazo.com"
+HOST = "example.com"
 CGI = "/upload.cgi"
