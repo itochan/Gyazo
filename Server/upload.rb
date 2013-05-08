@@ -42,7 +42,7 @@ class Upload
 
         ext = File.extname(filename)
 
-        File.open("data/#{hash}.png", 'w') do |io|
+        File.open("data/#{hash}#{ext}", 'w') do |io|
           io.write imagedata
         end
 
