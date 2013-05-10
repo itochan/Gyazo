@@ -4,7 +4,6 @@
 # $Date$
 # $Rev$
 #
-require 'cgi'
 require 'digest/md5'
 require 'sdbm'
 require "rubygems"
@@ -17,7 +16,6 @@ class Upload
 
     def call(env)
         req = Rack::Request.new(env)
-        cgi = CGI.new("html3")
         params = req.params()
 
 
@@ -31,9 +29,6 @@ class Upload
         $logger << imagedata.size
         $logger << id
 
-#        id = cgi.params['id'][0].read
-#        id - req[]
-#        imagedata = cgi.params['imagedata'][0].read
         hash = Digest::MD5.hexdigest(imagedata)
 
         #dbm = SDBM.open('db/id',0644)
